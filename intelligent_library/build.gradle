@@ -1,3 +1,5 @@
+import main.java.Libs
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -12,28 +14,42 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
+            minifyEnabled true
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
+            buildConfigField "boolean", "LOG_DEBUG", "true"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.+'
+    implementation Libs.appcompat_v7
+    implementation Libs.support_v4
+    implementation Libs.support_media_compat
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation Libs.kotlin_lib
+    implementation Libs.coroutines_android
+    implementation Libs.coroutines_core
 
-    implementation 'com.github.bumptech.glide:glide:4.2.0'
+    implementation Libs.glide
 
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation Libs.retrofit
+    implementation Libs.retrofit_converter
+    implementation Libs.okhttp
 
-    implementation 'com.google.dagger:dagger-android:2.11'
-    implementation 'com.google.dagger:dagger-android-support:2.11'
-    kapt 'com.google.dagger:dagger-compiler:2.11'
-    kapt 'com.google.dagger:dagger-android-processor:2.11'
+    implementation Libs.dagger_android
+    implementation Libs.dagger_support
+    kapt Libs.dagger_compiler
+    kapt Libs.dagger_processor
 }

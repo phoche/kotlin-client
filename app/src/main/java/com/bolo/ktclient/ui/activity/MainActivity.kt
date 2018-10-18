@@ -2,9 +2,6 @@ package com.bolo.ktclient.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.widget.toast
-import com.bolo.ktclient.R
-import com.bolo.ktclient.component.DaggerSimpleComponent
 import com.bolo.ktclient.component.SimpleModule
 import com.bolo.ktclient.observer.ClientLifecycleObserver
 import com.bolo.ktclient.presenter.IImagePresenter
@@ -48,7 +45,6 @@ class MainActivity : BaseActivity(), IImageView {
                 url = "https://sdkcdn.videojj.com/upload_img/f6nf34_1514534777747.jpeg"
                 image = imageview
             }
-            toast(externalCacheDir.absolutePath)
 
         }
     }

@@ -8,15 +8,6 @@ const val clicksDelayTime = 1123461123
 /**
  * Create by bolo on 2018/5/25
  */
-/***
- * 设置延迟时间的View扩展
- * @param delay Long 延迟时间，默认600毫秒
- * @return T
- */
-fun <T : View> T.withTrigger(delay: Long = 600): T {
-    triggerDelay = delay
-    return this
-}
 
 /***
  * 点击事件的View扩展

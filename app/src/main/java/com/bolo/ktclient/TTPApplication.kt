@@ -1,6 +1,7 @@
 package com.bolo.ktclient
 
 import android.app.Application
+import com.bolo.library.App
 import com.bolo.library.BaseComponent
 import com.bolo.library.DaggerBaseComponent
 import com.bolo.library.ProviderModule
@@ -17,14 +18,16 @@ class TTPApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initInjection()
-
+        App.mContext = mApplicationComponent.context()
     }
 
     private fun initInjection() {
         mApplicationComponent = DaggerBaseComponent
                 .builder()
+//                .providerModule(ProviderModule(this,
+//                        "https://api.github.com/", "ttp_sp"))
                 .providerModule(ProviderModule(this,
-                        "https://api.github.com/", "ttp_sp"))
+                        "http://dev-tv.videojj.com/api/v1/", "ttp_sp"))
                 .build()
     }
 }
